@@ -7,6 +7,7 @@ class App extends Component {
   constructor(props) {
     super();
 
+    console.clear();
     this.state = {
       users: [
         {
@@ -26,6 +27,20 @@ class App extends Component {
         },
       ],
     };
+
+    this.deleteUser = this.deleteUser.bind(this);
+  }
+
+  deleteUser(id) {
+    console.log('test');
+    let updatedUsers = this.state.users;
+
+    updatedUsers = updatedUsers.filter(user => user.id !== id);
+
+    //State Direct Immutable
+    this.setState({
+      users: updatedUsers
+    });
   }
 
   render() {
@@ -34,8 +49,8 @@ class App extends Component {
         <h4>User App</h4>
         <hr />
         <AddUser />
-        <hr/>
-        <Users />
+        <hr />
+        <Users deleteUser={this.deleteUser} users={this.state.users} />
       </div>
     );
   }

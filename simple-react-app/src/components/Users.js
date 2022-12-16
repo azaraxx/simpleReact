@@ -1,19 +1,27 @@
 import React, { Component } from "react";
+import User from "./User";
 
 class Users extends Component {
   render() {
+    const { users, deleteUser } = this.props;
+
     return (
-      <table class="table table-dark">
+      <table className="table table-dark">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
+            <th scope="col" width="10%">ID</th>
+            <th scope="col" width="35%">Name</th>
+            <th scope="col" width="35%">Email</th>
             <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>
-          
+          {
+            users.map(user => {
+              const { id, name, email } = user;
+              return <User key={id} id={id} name={name} email={email} deleteUser={deleteUser} />;
+            })
+          }
         </tbody>
       </table>
     );
