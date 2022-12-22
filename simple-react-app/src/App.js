@@ -29,17 +29,26 @@ class App extends Component {
     };
 
     this.deleteUser = this.deleteUser.bind(this);
+    this.addUser = this.addUser.bind(this);
+  }
+
+  addUser(newUser) {
+    let updatedUsers = this.state.users;
+    updatedUsers.push(newUser);
+    this.setState({
+      users: updatedUsers
+    })
   }
 
   deleteUser(id) {
-    console.log('test');
+    console.log("test");
     let updatedUsers = this.state.users;
 
-    updatedUsers = updatedUsers.filter(user => user.id !== id);
+    updatedUsers = updatedUsers.filter((user) => user.id !== id);
 
     //State Direct Immutable
     this.setState({
-      users: updatedUsers
+      users: updatedUsers,
     });
   }
 
@@ -48,7 +57,7 @@ class App extends Component {
       <div className="container">
         <h4>User App</h4>
         <hr />
-        <AddUser />
+        <AddUser addUser = {this.addUser} />
         <hr />
         <Users deleteUser={this.deleteUser} users={this.state.users} />
       </div>
